@@ -54,7 +54,20 @@ export function drawChart(simulation) {
 
     if (chart) {
 
-        chart.destroy();
+        chart.data.labels = simulation.time;
+
+        chart.data.datasets[0].data =
+            simulation.susceptible;
+
+        chart.data.datasets[1].data =
+            simulation.infected;
+
+        chart.data.datasets[2].data =
+            simulation.recovered;
+
+        chart.update("none");
+
+        return;
 
     }
 

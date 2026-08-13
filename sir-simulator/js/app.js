@@ -4,16 +4,26 @@ import { simulateSIR } from "./model/sir.js";
 
 import { drawChart } from "./ui/chart.js";
 
-const simulation = simulateSIR(
+import { setupControls } from "./ui/controls.js";
 
-    2.8,
 
-    7,
+function updateSimulation(params) {
 
-    0.002,
+    const simulation = simulateSIR(
 
-    CONFIG
+        params.R0,
 
-);
+        params.infectiousPeriod,
 
-drawChart(simulation);
+        params.initialFraction,
+
+        CONFIG
+
+    );
+
+    drawChart(simulation);
+
+}
+
+
+setupControls(updateSimulation);
