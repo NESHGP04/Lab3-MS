@@ -21,7 +21,9 @@ export function drawChart(simulation, config) {
 
                 borderWidth: 2,
 
-                pointRadius: 0
+                pointRadius: 0,
+
+                tension: 0.15
             },
 
             {
@@ -33,7 +35,9 @@ export function drawChart(simulation, config) {
 
                 borderWidth: 2,
 
-                pointRadius: 0
+                pointRadius: 0,
+
+                tension: 0.15
             },
 
             {
@@ -45,7 +49,9 @@ export function drawChart(simulation, config) {
 
                 borderWidth: 2,
 
-                pointRadius: 0
+                pointRadius: 0,
+
+                tension: 0.15
             },
 
             {
@@ -55,13 +61,17 @@ export function drawChart(simulation, config) {
                     () => config.population * config.hospitalCapacity
                 ),
 
-                borderColor: "#6b7280",
+                borderColor: "#f59e0b",
+
+                backgroundColor: "#f59e0b",
 
                 borderWidth: 2,
 
-                borderDash: [8, 6],
+                borderDash: [7, 5],
 
                 pointRadius: 0,
+
+                pointHoverRadius: 0,
 
                 fill: false
             }
@@ -104,6 +114,8 @@ export function drawChart(simulation, config) {
 
             responsive: true,
 
+            maintainAspectRatio: false,
+
             interaction: {
                 intersect: false,
                 mode: "index"
@@ -115,6 +127,35 @@ export function drawChart(simulation, config) {
 
                     position: "top"
 
+                },
+
+                tooltip: {
+
+                    callbacks: {
+
+                        label: function(context) {
+
+                            const value =
+                                Math.round(context.parsed.y);
+
+                            return (
+                                context.dataset.label +
+                                ": " +
+                                value.toLocaleString() +
+                                " personas"
+                            );
+
+                        },
+
+                        title: function(context) {
+
+                            const day = Number(context[0].label);
+
+                            return `Día ${day.toFixed(0)}`;
+                        },
+
+                    }
+
                 }
 
             },
@@ -124,11 +165,17 @@ export function drawChart(simulation, config) {
                 x: {
 
                     title: {
-
                         display: true,
-
                         text: "Tiempo (días)"
+                    },
 
+                    ticks: {
+                        callback: function(value) {
+
+                            const day = this.getLabelForValue(value);
+
+                            return Number(day).toFixed(0);
+                        }
                     }
 
                 },

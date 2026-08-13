@@ -13,111 +13,237 @@
 
 <body>
 
-    <h1>Simulador Interactivo del Modelo SIR</h1>
+    <main class="dashboard">
 
-    <div class="controls">
-
-        <!-- R0 -->
-        <div class="control">
-            <label for="r0">
-                R₀:
-                <span id="r0Value">2.8</span>
-            </label>
-
-            <input
-                type="range"
-                id="r0"
-                min="0.5"
-                max="5.0"
-                step="0.1"
-                value="2.8"
-            >
-        </div>
-
-
-        <!-- Período infeccioso -->
-        <div class="control">
-            <label for="infectiousPeriod">
-                Período infeccioso:
-                <span id="periodValue">7</span> días
-            </label>
-
-            <input
-                type="range"
-                id="infectiousPeriod"
-                min="3"
-                max="21"
-                step="1"
-                value="7"
-            >
-        </div>
-
-
-        <!-- Fracción inicial infectada -->
-        <div class="control">
-            <label for="initialFraction">
-                Fracción inicial infectada I(0)/N:
-                <span id="fractionValue">0.002</span>
-            </label>
-
-            <input
-                type="range"
-                id="initialFraction"
-                min="0.001"
-                max="0.05"
-                step="0.001"
-                value="0.002"
-            >
-        </div>
-
-    </div>
-
-    <section class="metrics-panel">
-
-        <div class="metric">
-            <span class="metric-label">R₀ actual</span>
-            <strong id="metricR0">--</strong>
-        </div>
-
-        <div class="metric">
-            <span class="metric-label">
-                Umbral de inmunidad
-            </span>
-            <strong id="metricHerdImmunity">--</strong>
-        </div>
-
-        <div class="metric">
-            <span class="metric-label">
-                Pico de infectados
-            </span>
-            <strong id="metricPeak">--</strong>
-        </div>
-
-        <div class="metric">
-            <span class="metric-label">
-                Tiempo al pico
-            </span>
-            <strong id="metricPeakTime">--</strong>
-        </div>
-
-        <div class="metric">
-            <span class="metric-label">
-                Estado
-            </span>
-
-            <div id="metricStatus" class="status">
-                --
+        <!-- HEADER -->
+        <header class="dashboard-header">
+            <div>
+                <p class="eyebrow">Modelación epidemiológica</p>
+                <h1>Simulador Interactivo SIR</h1>
+                <p class="subtitle">
+                    Explora cómo los parámetros epidemiológicos modifican
+                    la propagación de un brote.
+                </p>
             </div>
-        </div>
 
-    </section>
+            <div class="population-badge">
+                <span>Población</span>
+                <strong>500,000</strong>
+                <small>personas</small>
+            </div>
+        </header>
 
 
-    <canvas id="sirChart"></canvas>
+        <!-- CONTENIDO PRINCIPAL -->
+        <section class="main-grid">
+
+            <!-- CONTROLES -->
+            <aside class="card controls-card">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Parámetros</p>
+                        <h2>Escenario</h2>
+                    </div>
+                </div>
+
+
+                <!-- R0 -->
+                <div class="control">
+
+                    <div class="control-header">
+                        <label for="r0">
+                            Número reproductivo
+                        </label>
+
+                        <span class="control-value">
+                            R₀ = <strong id="r0Value">2.8</strong>
+                        </span>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="r0"
+                        min="0.5"
+                        max="5.0"
+                        step="0.1"
+                        value="2.8"
+                    >
+
+                    <div class="range-labels">
+                        <span>0.5</span>
+                        <span>5.0</span>
+                    </div>
+
+                </div>
+
+
+                <!-- PERÍODO -->
+                <div class="control">
+
+                    <div class="control-header">
+                        <label for="infectiousPeriod">
+                            Período infeccioso
+                        </label>
+
+                        <span class="control-value">
+                            <strong id="periodValue">7</strong> días
+                        </span>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="infectiousPeriod"
+                        min="3"
+                        max="21"
+                        step="1"
+                        value="7"
+                    >
+
+                    <div class="range-labels">
+                        <span>3 días</span>
+                        <span>21 días</span>
+                    </div>
+
+                </div>
+
+
+                <!-- FRACCIÓN INICIAL -->
+                <div class="control">
+
+                    <div class="control-header">
+                        <label for="initialFraction">
+                            Fracción inicial infectada
+                        </label>
+
+                        <span class="control-value">
+                            <strong id="fractionValue">0.002</strong>
+                        </span>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="initialFraction"
+                        min="0.001"
+                        max="0.05"
+                        step="0.001"
+                        value="0.002"
+                    >
+
+                    <div class="range-labels">
+                        <span>0.001</span>
+                        <span>0.050</span>
+                    </div>
+
+                    <p class="control-help">
+                        Proporción I(0)/N de la población.
+                    </p>
+
+                </div>
+
+            </aside>
+
+
+            <!-- GRÁFICA -->
+            <section class="card chart-card">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-kicker">Simulación</p>
+                        <h2>Dinámica de la epidemia</h2>
+                    </div>
+
+                    <span class="method-badge">
+                        Euler · Δt = 0.1 días
+                    </span>
+
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="sirChart"></canvas>
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- MÉTRICAS -->
+        <section class="metrics-panel">
+
+            <article class="metric-card">
+                <span class="metric-icon">R₀</span>
+
+                <div>
+                    <span class="metric-label">
+                        Reproducción actual
+                    </span>
+
+                    <strong id="metricR0">--</strong>
+                </div>
+            </article>
+
+
+            <article class="metric-card">
+                <span class="metric-icon">p*</span>
+
+                <div>
+                    <span class="metric-label">
+                        Umbral de inmunidad
+                    </span>
+
+                    <strong id="metricHerdImmunity">--</strong>
+                </div>
+            </article>
+
+
+            <article class="metric-card">
+                <span class="metric-icon">▲</span>
+
+                <div>
+                    <span class="metric-label">
+                        Pico de infectados
+                    </span>
+
+                    <strong id="metricPeak">--</strong>
+                </div>
+            </article>
+
+
+            <article class="metric-card">
+                <span class="metric-icon">◷</span>
+
+                <div>
+                    <span class="metric-label">
+                        Tiempo al pico
+                    </span>
+
+                    <strong id="metricPeakTime">--</strong>
+                </div>
+            </article>
+
+
+            <article class="metric-card status-card">
+
+                <div>
+                    <span class="metric-label">
+                        Estado epidemiológico
+                    </span>
+
+                    <div id="metricStatus" class="status">
+                        --
+                    </div>
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script type="module" src="js/app.js"></script>
 
 </body>

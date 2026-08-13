@@ -1,25 +1,440 @@
-body{
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
 
-    font-family: Arial, Helvetica, sans-serif;
-
-    margin:40px;
-
-    background:#f4f4f4;
-
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+:root {
+    --background: #f4f7fb;
+    --card: #ffffff;
+
+    --text: #172033;
+    --text-secondary: #64748b;
+
+    --border: #e2e8f0;
+
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+
+    --safe-bg: #dcfce7;
+    --safe-text: #166534;
+
+    --danger-bg: #fee2e2;
+    --danger-text: #991b1b;
+
+    --shadow:
+        0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    width: min(1500px, 96%);
+    margin: 0 auto;
+    padding: 22px 0;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+.eyebrow,
+.section-kicker {
+    color: var(--primary);
+
+    font-size: 0.72rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+
+.dashboard-header h1 {
+    margin-top: 3px;
+
+    font-size: clamp(1.6rem, 2.4vw, 2.3rem);
+    line-height: 1.1;
+}
+
+
+.subtitle {
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+}
+
+
+.population-badge {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+
+    padding: 10px 16px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.population-badge span,
+.population-badge small {
+    color: var(--text-secondary);
+}
+
+
+.population-badge strong {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+
+/* =========================
+   TARJETAS
+========================= */
+
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================
+   GRID PRINCIPAL
+========================= */
+
+.main-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(260px, 0.75fr)
+        minmax(600px, 2.25fr);
+
+    gap: 16px;
+}
+
+
+/* =========================
+   ENCABEZADOS
+========================= */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+.section-heading h2 {
+    margin-top: 2px;
+
+    font-size: 1.08rem;
+}
+
+
+/* =========================
+   CONTROLES
+========================= */
+
+.controls-card {
+    padding: 20px;
+}
+
+
+.control {
+    padding: 17px 0;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.control:first-of-type {
+    border-top: none;
+}
+
+
+.control-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+.control-header label {
+    font-size: 0.87rem;
+    font-weight: 650;
+}
+
+
+.control-value {
+    padding: 4px 8px;
+
+    color: var(--primary);
+
+    background: var(--primary-light);
+
+    border-radius: 7px;
+
+    font-size: 0.82rem;
+}
+
+
+input[type="range"] {
+    width: 100%;
+
+    accent-color: var(--primary);
+
+    cursor: pointer;
+}
+
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 0.7rem;
+}
+
+
+.control-help {
+    margin-top: 7px;
+
+    color: var(--text-secondary);
+
+    font-size: 0.7rem;
+}
+
+/* =========================
+   GRÁFICA
+========================= */
+
+.chart-card {
+    padding: 20px;
+}
+
+
+.chart-container {
+    position: relative;
+
+    width: 100%;
+    height: 350px;
+}
+
+
+.method-badge {
+    padding: 5px 9px;
+
+    color: var(--text-secondary);
+
+    background: #f8fafc;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    font-size: 0.7rem;
+}
+
+
+/* =========================
+   MÉTRICAS
+========================= */
+
+.metrics-panel {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(130px, 1fr))
+        minmax(220px, 1.5fr);
+
+    gap: 12px;
+
+    margin-top: 14px;
+}
+
+
+.metric-card {
+    min-height: 90px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.metric-icon {
+    min-width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary);
+
+    background: var(--primary-light);
+
+    border-radius: 9px;
+
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+
+.metric-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 0.72rem;
+}
+
+
+.metric-card strong {
+    font-size: 1.15rem;
+}
+
+
+/* =========================
+   ESTADO
+========================= */
+
+.status-card {
+    justify-content: center;
+}
+
 
 .status {
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border-radius: 7px;
+
+    font-size: 0.76rem;
+    font-weight: 750;
 }
+
 
 .status-safe {
-    background-color: #dcfce7;
-    color: #166534;
+    color: var(--safe-text);
+    background: var(--safe-bg);
 }
 
+
 .status-danger {
-    background-color: #fee2e2;
-    color: #991b1b;
+    color: var(--danger-text);
+    background: var(--danger-bg);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-panel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-container {
+        height: 320px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        width: 94%;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .population-badge {
+        display: none;
+    }
+
+    .metrics-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        height: 280px;
+    }
+
 }
