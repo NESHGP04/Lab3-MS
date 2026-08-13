@@ -1,6 +1,6 @@
 let chart = null;
 
-export function drawChart(simulation) {
+export function drawChart(simulation, config) {
 
     const ctx = document
         .getElementById("sirChart")
@@ -46,6 +46,24 @@ export function drawChart(simulation) {
                 borderWidth: 2,
 
                 pointRadius: 0
+            },
+
+            {
+                label: "Capacidad hospitalaria (10%)",
+
+                data: simulation.time.map(
+                    () => config.population * config.hospitalCapacity
+                ),
+
+                borderColor: "#6b7280",
+
+                borderWidth: 2,
+
+                borderDash: [8, 6],
+
+                pointRadius: 0,
+
+                fill: false
             }
 
         ]
@@ -64,6 +82,11 @@ export function drawChart(simulation) {
 
         chart.data.datasets[2].data =
             simulation.recovered;
+        
+        chart.data.datasets[3].data =
+            simulation.time.map(
+                () => config.population * config.hospitalCapacity
+            );
 
         chart.update("none");
 
@@ -116,7 +139,19 @@ export function drawChart(simulation) {
 
                         display: true,
 
-                        text: "Población"
+                        text: "Personas"
+
+                    },
+
+                    beginAtZero: true,
+
+                    ticks: {
+
+                        callback: function(value) {
+
+                            return value.toLocaleString();
+
+                        }
 
                     }
 

@@ -7,3 +7,19 @@ body{
     background:#f4f4f4;
 
 }
+
+.status {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.status-safe {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
