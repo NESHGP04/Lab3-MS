@@ -39,22 +39,30 @@ export function updateMetricsPanel(metrics) {
 
 
     // Estado epidemiológico
-    if (metrics.epidemicGrows) {
+    if (metrics.R0 > 1) {
 
-        statusElement.textContent =
-            "R₀ > 1 · Epidemia crece";
+    statusElement.textContent =
+        "R₀ > 1 · Epidemia crece";
 
-        statusElement.className =
-            "status status-danger";
+    statusElement.className =
+        "status status-danger";
 
-    } else {
+} else if (metrics.R0 < 1) {
 
-        statusElement.textContent =
-            "R₀ ≤ 1 · Epidemia se extingue";
+    statusElement.textContent =
+        "R₀ < 1 · Epidemia se extingue";
 
-        statusElement.className =
-            "status status-safe";
+    statusElement.className =
+        "status status-safe";
 
-    }
+} else {
+
+    statusElement.textContent =
+        "R₀ = 1 · Umbral epidémico";
+
+    statusElement.className =
+        "status status-neutral";
+
+}
 
 }

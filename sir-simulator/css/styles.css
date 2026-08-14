@@ -392,6 +392,11 @@ input[type="range"] {
     background: var(--danger-bg);
 }
 
+.status-neutral {
+    color: #854d0e;
+    background: #fef9c3;
+}
+
 
 /* =========================
    RESPONSIVE
